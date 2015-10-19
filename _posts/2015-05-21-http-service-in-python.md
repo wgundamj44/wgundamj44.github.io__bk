@@ -48,9 +48,9 @@ options on, so when parent process terminates, the thread terminates too.
 
 ### BaseWSGIServer and WSGIRequestHandler
 
-BaseWSGIServer inherits Python's HTTPServer it uses WSGIRequestHandler to handle request. For each request, it calls RequestHandler() to process it.
+`BaseWSGIServer` inherits Python's `HTTPServer`. It sets its `handler` to `WSGIRequestHandler` which will handle request. For each request, this `WSGIRequestHandler` will be initialized, and handles request.
 
-In WSGIRequestHandler's base class BaseRequestHandler, we can see in its contructor, it calls step(), handle(), finish() in turn. All its child class
+In `WSGIRequestHandler`'s base class BaseRequestHandler, we can see in its contructor, it calls step(), handle(), finish() in turn. All its child class
 will override handle() to give response.
 
 In WSGIRequestHandler's parent class BaseHTTPRequestHandler, it overrides handle() and call handle_one_request() for each request came. And WSGIRequestHandler
